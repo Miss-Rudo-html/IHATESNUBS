@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -10,17 +10,21 @@
   <main>
     <div class="stage" id="stage">
       <img class="frame" src="press-frame.svg" alt="Hydraulic press frame">
-      <img class="usagi" src="usagi.png" alt="Usagi">
-      <div class="bubble">YAAAAA!!</div>
+      <img class="char hachiware" src="hachiware.png" alt="Hachiware">
+      <img class="char usagi" src="usagi.png" alt="Usagi">
+      <img class="char chiikawa" src="chiikawa.png" alt="Chiikawa">
+      <div class="bubble b1">EEEEK!!</div>
+      <div class="bubble b2">YAAAAA!!</div>
+      <div class="bubble b3">uwaaa!!</div>
       <img class="head" src="press-head.svg" alt="Hydraulic press plate">
     </div>
     <p class="caption">snubs vs. hydraulic press</p>
   </main>
   <script>
-    // shrink the 360x480 stage to fit small windows
+    // shrink the 640x480 stage to fit small windows
     const stage = document.getElementById("stage");
     function fit() {
-      const s = Math.min(1, (innerWidth - 32) / 368, (innerHeight - 70) / 488);
+      const s = Math.min(1, (innerWidth - 32) / 648, (innerHeight - 70) / 488);
       stage.style.setProperty("--scale", Math.max(s, 0.3));
     }
     addEventListener("resize", fit);

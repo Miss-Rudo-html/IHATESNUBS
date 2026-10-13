@@ -18,11 +18,11 @@ main {
   padding: 16px;
 }
 
-/* 360x480 stage, scaled down on small screens */
+/* 640x480 stage, scaled down on small screens */
 .stage {
   --scale: 1; /* fitted to the window by the script in index.html */
   position: relative;
-  width: 360px;
+  width: 640px;
   height: 480px;
   margin: 0 auto;
   overflow: hidden;
@@ -42,39 +42,44 @@ main {
   -webkit-user-drag: none;
 }
 
-.frame { left: 0; top: 0; width: 360px; height: 480px; }
+.frame { left: 0; top: 0; width: 640px; height: 480px; }
 
-/* Usagi stands on the base (y = 440) */
-.usagi {
-  left: 80px;
-  bottom: 32px; /* png has ~8px of empty margin under the feet */
-  width: 200px;
-  height: 200px;
+/* Characters stand on the base (y = 440).
+   Each png has a different amount of empty margin under the feet,
+   so `bottom` is nudged per character; --sx is how wide each one spreads when flat. */
+.char {
   transform-origin: 50% 100%;
   animation: squash 4s infinite;
 }
 
+.hachiware { left: 72px;  bottom: 22px; width: 156px; height: 179px; --sx: 1.15; }
+.usagi     { left: 239px; bottom: 34px; width: 162px; height: 162px; --sx: 1.4; }
+.chiikawa  { left: 409px; bottom: 28px; width: 162px; height: 174px; --sx: 1.1; }
+
 /* Plate bottom sits at y=120, drops 300px to crush */
 .head {
-  left: 60px;
+  left: 40px;
   top: -220px;
-  width: 240px;
+  width: 560px;
   height: 340px;
   animation: press 4s infinite;
 }
 
 .bubble {
-  left: 224px;
-  top: 235px;
+  top: 232px;
   padding: 6px 12px;
   background: #fff;
   border: 3px solid #5b3a45;
   border-radius: 14px;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
+  white-space: nowrap;
   opacity: 0;
   animation: bubble 4s infinite;
 }
+.b1 { left: 60px; }
+.b2 { left: 235px; }
+.b3 { left: 420px; }
 
 .caption {
   margin: 14px 0 0;
@@ -91,7 +96,7 @@ main {
 
 @keyframes squash {
   0%, 39.5% { transform: scale(1, 1); }
-  40%, 70%  { transform: scale(1.7, .1); animation-timing-function: ease-out; }
+  40%, 70%  { transform: scale(var(--sx), .1); animation-timing-function: ease-out; }
   90%       { transform: scale(.94, 1.08); }
   96%       { transform: scale(1.03, .97); }
   100%      { transform: scale(1, 1); }
@@ -111,7 +116,7 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stage, .usagi, .head, .bubble { animation: none; }
+  .stage, .char, .head, .bubble { animation: none; }
   .head { transform: translateY(300px); }
-  .usagi { transform: scale(1.7, .1); }
+  .char { transform: scale(var(--sx), .1); }
 }
