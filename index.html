@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snubs vs. Hydraulic Press</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="stage" id="stage">
+      <img class="frame" src="images/press-frame.svg" alt="Hydraulic press frame">
+      <img class="usagi" src="images/usagi.png" alt="Usagi">
+      <div class="bubble">YAAAAA!!</div>
+      <img class="head" src="images/press-head.svg" alt="Hydraulic press plate">
+    </div>
+    <p class="caption">snubs vs. hydraulic press</p>
+  </main>
+  <script>
+    // shrink the 360x480 stage to fit small windows
+    const stage = document.getElementById("stage");
+    function fit() {
+      const s = Math.min(1, (innerWidth - 32) / 368, (innerHeight - 70) / 488);
+      stage.style.setProperty("--scale", Math.max(s, 0.3));
+    }
+    addEventListener("resize", fit);
+    fit();
+  </script>
+</body>
+</html>
